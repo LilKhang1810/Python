@@ -8,15 +8,22 @@ def save(line):
     except:
         pass
 def read():
-    sv = []
+    taskList = []
     try:
-        f = open(path,'r',encoding='utf8')
-        for i in f:
-            data = i.strip()
-            arr=data.split('-')
-            sv.append(arr)
-        f.close
+        f = open(path, 'r', encoding='utf8')
+        for line in f:
+            data = line.strip()
+            arr = data.split('-')
+            if len(arr) == 3:
+                task = {
+                    'name': arr[0].strip(),
+                    'deadline': int(arr[1].strip()),
+                    'satisfy': int(arr[2].strip())
+                }
+                taskList.append(task)
+        f.close()
     except:
         pass
-    return sv
+    return taskList
+
 
